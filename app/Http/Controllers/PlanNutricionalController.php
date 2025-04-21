@@ -83,7 +83,7 @@ class PlanNutricionalController extends Controller
         $dompdf = new Dompdf($options);
         $dompdf->loadHtml($html);
 
-        // Renderizar el PDF
+        // Renderizar el PDFs
         $dompdf->render();
 
         // Obtener el contenido del PDF como una cadena
