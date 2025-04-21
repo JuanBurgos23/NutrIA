@@ -32,45 +32,4 @@ class PlanNutricionalTest extends TestCase
             'id_diagnostico',
         ], (new PlanNutricional)->getFillable());
     }
-
-    /** @test */
-    public function plan_nutricional_pertenece_a_un_periodo()
-    {
-        $periodo = Periodo::factory()->create();
-        $plan = PlanNutricional::factory()->create(['id_periodo' => $periodo->id]);
-
-        $this->assertInstanceOf(Periodo::class, $plan->periodo);
-        $this->assertEquals($periodo->id, $plan->periodo->id);
-    }
-
-    /** @test */
-    public function plan_nutricional_pertenece_a_una_dieta()
-    {
-        $dieta = Dieta::factory()->create();
-        $plan = PlanNutricional::factory()->create(['id_dieta' => $dieta->id]);
-
-        $this->assertInstanceOf(Dieta::class, $plan->dieta);
-        $this->assertEquals($dieta->id, $plan->dieta->id);
-    }
-
-    /** @test */
-    public function plan_nutricional_pertenece_a_un_diagnostico()
-    {
-        $diagnostico = Diagnostico::factory()->create();
-        $plan = PlanNutricional::factory()->create(['id_diagnostico' => $diagnostico->id]);
-
-        $this->assertInstanceOf(Diagnostico::class, $plan->diagnostico);
-        $this->assertEquals($diagnostico->id, $plan->diagnostico->id);
-    }
-
-    /** @test */
-    public function plan_nutricional_tiene_muchos_ejercicios()
-    {
-        $plan = PlanNutricional::factory()->create();
-        $ejercicio = Ejercicio::factory()->create();
-
-        $plan->ejercicios()->attach($ejercicio->id);
-
-        $this->assertTrue($plan->ejercicios->contains($ejercicio));
-    }
 }

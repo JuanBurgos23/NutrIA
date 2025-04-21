@@ -54,7 +54,7 @@ class PacienteControllerTest extends TestCase
             'direccion' => 'Av. Siempre Viva',
         ];
 
-        $response = $this->actingAs($user)->put(route('perfil.actualizar'), $data);
+        $response = $this->actingAs($user)->post(route('user-perfil'), $data);
 
         $response->assertRedirect(route('perfil'));
         $this->assertDatabaseHas('users', [
@@ -63,8 +63,8 @@ class PacienteControllerTest extends TestCase
             'name' => $data['name'],
         ]);
 
-        $this->assertDatabaseHas('pacientes', [
-            'id' => $paciente->id,
+        $this->assertDatabaseHas('paciente', [
+            'id_user' => $user->id,
             'paterno' => $data['paterno'],
             'direccion' => $data['direccion'],
         ]);
