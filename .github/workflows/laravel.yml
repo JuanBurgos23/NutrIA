@@ -38,7 +38,7 @@ jobs:
       - name: Instalar dependencias
         run: |
           composer install --no-progress --prefer-dist
-          cp .env.example .env
+          cp .env.test .env
           php artisan key:generate
           php artisan migrate --force
 
