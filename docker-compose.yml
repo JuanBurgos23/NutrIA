@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nutria-laravel
+    container_name: nutria-app
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/var/www
+    depends_on:
+      - db
+
+  web:
+    image: nginx:alpine
+    container_name: nutria-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8
+    container_name: nutria-db
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nutria
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
