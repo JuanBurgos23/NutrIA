@@ -51,7 +51,7 @@ class PacienteControllerTest extends TestCase
             'materno' => 'ApellidoM',
             'fecha_nac' => '1995-01-01',
             'celular' => '78945612',
-            'direccion' => 'Av. Siempre Viva',
+            'direccion' => 'Av. Siempre Viva 123',
         ];
 
         $response = $this->actingAs($user)->post(route('user-perfil'), $data);
