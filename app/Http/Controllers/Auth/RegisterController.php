@@ -96,7 +96,7 @@ class RegisterController extends Controller
             // Si hay más usuarios, asigna el rol de paciente y guarda los datos en la tabla paciente
             $user->assignRole('paciente');
 
-            // Crea un registro en la tabla paciente
+            // Crea un registro en la tabla pacientes
             Paciente::create([
                 'id_user' => $user->id, // Relación entre el usuario y el paciente
                 'nombre' => $data['name'],
