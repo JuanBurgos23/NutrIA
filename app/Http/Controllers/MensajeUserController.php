@@ -11,7 +11,7 @@ class MensajeUserController extends Controller
 {
     public function show($id)
     {
-        // Obtener el usuario autenticado
+        // Obtener el usuario autenticado se
         $user = auth()->user();
         // Obtener el registro del paciente relacionado con el usuario autenticado
         $paciente = Paciente::where('id_user', $user->id)->first();
