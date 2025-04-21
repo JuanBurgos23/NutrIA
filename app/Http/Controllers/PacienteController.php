@@ -12,36 +12,23 @@ class PacienteController extends Controller
 {
     public function perfil()
     {
-        // Obtener el usuario autenticado
         $user = auth()->user();
 
-        // Verificar si el usuario tiene el id 1 (administrador o caso especial)
-        if ($user->id == 1) {
-            // Retornar solo los datos del usuario (sin datos de paciente)
-            return view('perfil.perfil', [
-                'email' => $user->email,
-                'name' => $user->name,
-                'paciente' => null // No hay paciente asociado
-            ]);
+        $paciente = null;
+        $mensajes = [];
+
+        if ($user->id !== 1) {
+            $paciente = Paciente::where('id_user', $user->id)->first();
+            $mensajes = MensajeNotificacion::where('id_user', $user->id)->get();
         }
 
-        // Obtener el registro del paciente relacionado con el usuario autenticado
-        $paciente = Paciente::where('id_user', $user->id)->first();
-
-        // Verificar si se encontró el paciente
-        if (!$paciente) {
-            return view('perfil.perfil', [
-                'email' => $user->email,
-                'name' => $user->name,
-                'paciente' => null // No hay paciente asociado
-            ]);
-        }
-        $mensajes = MensajeNotificacion::where('id_user', $user->id)->get();
-
-        // Si hay paciente, retornar los datos del paciente y usuario
-        return view('perfil.perfil', compact('paciente','mensajes'));
+        return view('perfil.perfil', [
+            'email' => $user->email,
+            'name' => $user->name,
+            'paciente' => $paciente,
+            'mensajes' => $mensajes,
+        ]);
     }
-
 
     public function actualizarPerfil(Request $request)
     {
