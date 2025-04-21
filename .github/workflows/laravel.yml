@@ -44,4 +44,4 @@ jobs:
 
       - name: Ejecutar pruebas
         run: |
-          php artisan test --filter RegisterControllerTest
+          php artisan test
