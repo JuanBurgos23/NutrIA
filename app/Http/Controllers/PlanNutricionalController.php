@@ -146,7 +146,7 @@ class PlanNutricionalController extends Controller
 
         try {
             // Enviar datos a la API externa
-            $response = Http::post('https://magicloops.dev/api/loop/d3e77574-b34f-4cf0-969a-fc6c81b85ea6/run', $datosAPI);
+            $response = Http::post('', $datosAPI);
 
 
             if ($response->successful()) {
