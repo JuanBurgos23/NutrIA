@@ -108,7 +108,7 @@ class ConsultaController extends Controller
 
         try {
             // Enviar datos a la API externa
-            $response = Http::post('https://magicloops.dev/api/loop/d269036f-1fb6-4544-b8d7-36c95f6a9d1d/run', $datosAPI);
+            $response = Http::post('', $datosAPI);
 
             if ($response->successful()) {
                 // Capturar el resultado de la API
