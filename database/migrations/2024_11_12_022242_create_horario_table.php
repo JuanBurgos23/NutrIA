@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('horario', function (Blueprint $table) {
             $table->id();
             $table->string('hora');  //aqui cambie a varchar
-            $table->unsignedBigInteger('id_periodo');
-            $table->unsignedBigInteger('id_dia');
+            $table->unsignedBigInteger('id_periodo')->unique();;
+            $table->unsignedBigInteger('id_dia')->unique();;
             $table->foreign('id_periodo')->references('id')->on('periodo');
             $table->foreign('id_dia')->references('id')->on('dia');
             $table->timestamps();
